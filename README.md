@@ -1,7 +1,10 @@
-<<<<<<< HEAD
 # Synopsis
-Simplest kernel possible created in C Language.
-The kernel is in 32-bit protected mode and is made to be booted in a x86 CPU (i use Qemu Emulator, as an alternative you can use Bochs).
+This repository is the result of my continuous process in learning the bases of the creation of an opetative system.
+If you too are learning you can use this repository, most of the times i try to comment the code.
+
+I also recommend you to use this links as reference:
+* [OSDev.org](http://wiki.osdev.org/Main_Page)
+* [JamesM's kernel development tutorials](https://web.archive.org/web/20160412174753/http://www.jamesmolloy.co.uk/tutorial_html/index.html)
 
 # Running
 Requierements:
@@ -18,6 +21,11 @@ Once you have created the Cross Compiler and installed Qemu you can use the give
 ```
 make run
 ```
-=======
-# 32bits-operative-system
->>>>>>> 23546e41e271fdb5b669c2ae6c96f72fdf23cb05
+# Features
+This SO implements this features (this list is ordered by development):
+- [x] Bootload
+- [x] Enter 32-bit mode
+- [x] Screen output
+- [x] Screen scroll
+- [x] Interrupt handling
+- [x] Keyboard input (US keyboard - some scancodes are not yet implemented)

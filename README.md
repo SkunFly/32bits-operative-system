@@ -1,5 +1,5 @@
 # Synopsis
-This repository is the result of my continuous process in learning the bases of the creation of an opetative system.
+This repository is the result of my continuous process in learning the bases of the creation of an operative system.
 If you too are learning you can use this repository, most of the times i try to comment the code.
 
 I also recommend you to use this links as reference:

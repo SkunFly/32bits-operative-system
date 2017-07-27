@@ -1,9 +1,10 @@
 # $@ = target file
 # $< = first dependency
 # $^ = all dependencies
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h libc/*.h)
 OBJ = $(C_SOURCES:.c=.o cpu/interrupt.o)
+CFLAGS = -g -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -Werror
 
 all: os-image.bin
 
@@ -15,7 +16,7 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 
 # Generic rule for compiling C code to object file
 %.o : %.c ${HEADERS}
-	i386-elf-gcc -ffreestanding -c $< -o $@
+	i386-elf-gcc ${CFLAGS} -ffreestanding -c $< -o $@
 
 # Generic rule for assembler
 %.o : %.asm

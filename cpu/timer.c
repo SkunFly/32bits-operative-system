@@ -17,21 +17,16 @@
 */
 
 #include "timer.h"
-#include "../drivers/screen.h"
-#include "../kernel/util.h"
-#include "../drivers/port.h"
+#include "port.h"
 #include "isr.h"
+#include "../drivers/screen.h"
+#include "../libc/function.h"
 
 u32 tick = 0;
 
 static void timer_callback(registers_t regs){
   tick++;
-  print("Tick: ");
-
-  char tick_ascci[256];
-  int_to_ascii(tick, tick_ascci);
-  print(tick_ascci);
-  print("\n");
+  UNUSED(regs);
 }
 
 void init_timer(u32 freq){

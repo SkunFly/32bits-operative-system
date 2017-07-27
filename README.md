@@ -29,7 +29,7 @@ This SO implements this features (this list is ordered by development):
 - [x] Screen scroll
 - [x] Interrupt handling
 - [x] Keyboard input (US keyboard - some scancodes are not yet implemented)
-- [ ] Simple Shell
+- [x] Simple Shell
 - [ ] Memory Managment
 - [ ] Multithreaded Kernel
 - [ ] File System

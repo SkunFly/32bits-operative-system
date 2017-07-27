@@ -11,4 +11,5 @@
 // Functions
 void print_at(char* str, int row, int col);
 void print(char* str);
+void print_backspace();
 void clear_screen();

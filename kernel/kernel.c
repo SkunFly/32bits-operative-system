@@ -1,12 +1,23 @@
+#include "kernel.h"
 #include "../cpu/isr.h"
-#include "../cpu/timer.h"
-#include "../drivers/keyboard.h"
+#include "../drivers/screen.h"
+#include "../libc/string.h"
 
 void main(){
-  //clear_screen();
   isr_install();
+  irq_install();
 
-  asm volatile("sti");
-  //init_timer(50);
-  init_keyboard();
+  print("Type something, it will go through the kernel\n"
+         "Type END to halt the CPU\n");
+}
+
+
+void shell(char* input){
+  if(strcmp(input, "END") == 0){
+    print("Stopping the CPU. Bye!\n");
+    asm volatile("hlt");
+  }
+  print("$> ");
+  print(input);
+  print("\n");
 }

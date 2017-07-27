@@ -1,6 +1,6 @@
 #include "screen.h"
-#include "port.h"
-#include "../kernel/util.h"
+#include "../cpu/port.h"
+#include "../libc/mem.h"
 
 int print_char(char character, int row, int col, char attribute_byte);
 void print_at(char* str, int row, int col);
@@ -37,6 +37,13 @@ void print_at(char* str, int row, int col){
 
 void print(char* str){
   print_at(str, -1, -1);
+}
+
+void print_backspace(){
+  int offset = get_cursor() - 2;
+  int row = get_offset_row(offset);
+  int col = get_offset_col(offset);
+  print_char(0x08, row, col, 0);
 }
 
 void clear_screen(){
@@ -78,10 +85,12 @@ int print_char(char character, int row, int col, char attribute_byte){
     offset = get_screen_offset(row+1, 0);
   }
   else{
+    int backspace = character;
+    if(backspace == 0x08){ character = ' '; }
     vidmem[offset] = character;
     vidmem[offset+1] = attribute_byte;
     //Update offset to the next character cell
-    offset += 2;
+    if(backspace != 0x08) { offset += 2; }
   }
 
   offset = handle_scrolling(offset);

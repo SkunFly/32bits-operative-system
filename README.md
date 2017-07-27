@@ -34,3 +34,7 @@ This SO implements this features (this list is ordered by development):
 - [ ] Multithreaded Kernel
 - [ ] File System
 - [ ] User space
+
+# Todo List
+- [ ] Fix kmalloc
+- [ ] Implement Missing Functions (memset, memcpy, memmove and memcmp functions)

@@ -1,7 +1,7 @@
 #ifndef ISR_H
 #define ISR_H
 
-#include "types.h"
+#include <stdint.h>
 
 // Master and Slave PICs offset
 #define PIC1		0x20		/* IO base address for master PIC */
@@ -94,17 +94,17 @@ extern void irq15();
 #define IRQ15 47
 
 typedef struct{
-  u32 ds; // Data segment selector
-  u32 edi, esi, ebp, esp, eax, ebx, ecx, edx; // Pushed by pusha
-  u32 int_no, err_code; // Intrerrupt number and error code (if applicable)
-  u32 eip, cs, eflags, useresp, ss; // Pushed by the processor automatically
+  uint32_t ds; // Data segment selector
+  uint32_t edi, esi, ebp, useless, eax, ebx, ecx, edx; // Pushed by pusha
+  uint32_t int_no, err_code; // Intrerrupt number and error code (if applicable)
+  uint32_t eip, cs, eflags, esp, ss; // Pushed by the processor automatically
 } registers_t;
 
-typedef void (*isr_t)(registers_t);
-
 void isr_install();
-void register_interrupt_handler(u8 n, isr_t handler);
-void isr_handler(registers_t r);
+void isr_handler(registers_t *r);
 void irq_install();
+
+typedef void (*isr_t)(registers_t*);
+void register_interrupt_handler(uint8_t n, isr_t handler);
 
 #endif
